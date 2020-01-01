@@ -4,7 +4,6 @@ FROM ubuntu:bionic
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mysql && useradd -r -g mysql mysql
 
-# https://bugs.debian.org/830696 (apt uses gpgv by default in newer releases, rather than gpg)
 RUN set -ex; \
 	apt-get update; \
 	if ! which gpg; then \
@@ -74,9 +73,6 @@ RUN set -ex; \
 	rm -r "$GNUPGHOME"; \
 	apt-key list
 
-# bashbrew-architectures: amd64 arm64v8 ppc64le
-ENV MARIADB_MAJOR 10.1
-ENV MARIADB_VERSION 1:10.1.43+maria-1~bionic
 # release-status:Stable
 # (https://downloads.mariadb.org/mariadb/+releases/)
 
@@ -91,7 +87,7 @@ RUN set -ex; \
 	apt-get install -y \
 		"mariadb-server" \
 # mariadb-backup is installed at the same time so that `mysql-common` is only installed once from just mariadb repos
-		mariadb-backup-10.1 \
+		mariadb-backup \
 		socat \
 	; \
 	rm -rf /var/lib/apt/lists/*; \
