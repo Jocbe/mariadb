@@ -66,8 +66,6 @@ RUN set -ex; \
 	apt-get update; \
 	apt-get install -y \
 		"mariadb-server" \
-# mariadb-backup is installed at the same time so that `mysql-common` is only installed once from just mariadb repos
-		mariadb-backup \
 		socat \
 	; \
 # comment out any "user" entires in the MySQL config ("docker-entrypoint.sh" or "--user" will handle user switching)
