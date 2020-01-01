@@ -13,7 +13,7 @@ RUN set -ex; \
 # Ubuntu includes "gnupg" (not "gnupg2", but still 2.x), but not dirmngr, and gnupg 2.x requires dirmngr
 # so, if we're not running gnupg 1.x, explicitly install dirmngr too
 		apt-get install -y --no-install-recommends dirmngr; \
-	fi; \
+	fi
 
 # add gosu for easy step-down from root
 ENV GOSU_VERSION 1.10
@@ -51,8 +51,7 @@ RUN set -ex; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		pwgen \
-		tzdata \
-	; \
+		tzdata
 
 # release-status:Stable
 # (https://downloads.mariadb.org/mariadb/+releases/)
